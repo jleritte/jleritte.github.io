@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Eat Tools</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel="icon" href="favicon.ico"/>
+    
+    <style>
+      HTML {
+      	font-family: sans-serif;
+	  	background-color: #95a5a6;
+      	color: #2c3e50;
+      }
+
+	  BODY > DIV {
+		border: 1px solid #2c3e50;
+		background-color: #ecf0f1;
+		box-shadow: .5vmin .5vmin .5vmin #2c3e50;
+		padding: 1vmin;
+
+	  }
+
+      #map-canvas {
+      	display: none;
+      }
+
+	  #menu {
+	  }
+
+	  #menu > INPUT {
+	  	margin-right: 1vmin;
+	  }
+
+	  #names, #vote {
+	  	margin-top: 1vmin;
+	  }
+
+	  #names SPAN, #loading SPAN {
+		border: 0;
+	  }
+
+	  #loading SPAN {
+	  	margin-left: 0;
+	  }
+
+	  SPAN {
+	  	border: 1px solid #2c3e50;
+	  	margin-left: 1vmin;
+	  }
+
+	  .ListItem{
+	  	background-color: #ecf0f1;
+	  	border: 1px solid #2c3e50;
+	  	padding: 1vmin;
+	  	margin: 0 0 1vmin;
+	  }
+
+	  DIV > LABEL{
+	  	width: 25%;
+	  }
+
+	  .total {
+	  	border: 0;
+	  	float: right;
+	  	margin: 0 5px;
+	  }
+
+	  .voted {
+	  	color: #ecf0f1;
+	  }
+
+	  .address {
+	  	width: 25vw;
+	  }
+
+	  .remove_user {
+	  	display: inline;
+	  	margin-left: 1vmin;
+	  	border: 1px solid #2c3e50;
+	  	border-radius: 50%;
+	  	background-color: #95a5a6;
+	  	color: #ecf0f1;
+	  	opacity: .5;
+	  }
+
+	  .remove_user:hover {
+	  	opacity: 1;
+	  }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+  </head>
+  <body>
+    <div id="map-canvas"></div>
+    <div id="menu"></div>
+    <div id="names"></div>
+    <div id="vote">
+    	<p id="loading">Loading<span>....</span></p>
+    </div>
+  </body>
+</html>
