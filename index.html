@@ -90,7 +90,7 @@
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
     <script>
-var map, infowindow, service, geocoder, places = localStorage.places || {}, userCount, names = {}; 
+var map, infowindow, service, geocoder, places = localStorage.places || {}, userCount, names = {},vote = document.querySelector('#vote'); 
 
 function initialize() {
 	buildMenu();
