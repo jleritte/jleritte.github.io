@@ -1,0 +1,702 @@
+/*Tag styles*/
+DIV, BODY, HTML, SPAN, TD{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  box-sizing: border-box;
+  font-family: 'Courier New',Courier,monospace;
+}
+TABLE{
+  border-spacing: 1px;
+  empty-cells: show;
+}
+TR{
+  background-color: transparent;
+  height: 158px;
+}
+TD{
+  width: 102px;
+  border: 1px solid #000;
+}
+UL
+{
+  list-style: none;
+}
+@font-face {
+  font-family: 'tetra_fonts';
+  src: url('font/tetra_fonts.eot?12731343');
+  src: url('font/tetra_fonts.eot?12731343#iefix') format('embedded-opentype'),
+    url('font/tetra_fonts.woff?12731343') format('woff'),
+    url('font/tetra_fonts.ttf?12731343') format('truetype'),
+    url('font/tetra_fonts.svg?12731343#tetra_fonts') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+ [class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "tetra_fonts";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+}
+/*Start of the Class Styles*/
+/*Play area/Card styles*/
+.gridContain {
+  background: #555;
+  border: 3px outset #333;
+  color: #fff;
+  width: 453px;
+  height: 483px;
+  padding: 10px;
+  margin: 10px;
+}
+.gridContain LI {
+  float: left;
+  margin: 0 20px;
+}
+.grid{
+  /*position: relative;*/
+  top: 15px;
+  left: 10px;
+  background: #000;
+  border-radius: 4px;
+  border-spacing: 1px;
+  border: 3px solid #ba7;
+}
+.cardGrid {
+  height: 38px;
+  width: 41px;
+  border: 6px solid #f0f;
+  border-top-color: #630;
+  border-left-color: #740;
+  border-bottom-color: #850;
+  border-right-color: #960;
+  background: #520;
+  border-radius: 3px;
+  padding: 6px;
+}
+.cardGridcont {
+  height: 16px;
+  width: 16px;
+  border: 6px solid #f0f;
+  border-top-color: #630;
+  border-left-color: #740;
+  border-bottom-color: #850;
+  border-right-color: #960;
+  background: #520;
+  border-radius: 5px;
+}
+.cardGrid.full{
+  position: relative;
+  border: 1px solid #520;
+  background: #874;
+  color: #520;
+}
+.full:hover, .full.hover{
+  border: 1px solid #300;
+  background: #652;
+  color: #300;
+}
+.cardGrid.full DIV{
+  float: left;
+  color: #fff;
+  z-index: 100;
+  position: relative;
+  left: 22px;
+  top: 13px;
+}
+.icon-b:before{
+  content: '\e803';
+  font-size: 18pt;
+  position: absolute;
+  left: 7px; 
+}
+.icon-m:before{
+  content: '\e801';
+  font-size: 18pt;
+  position: absolute;
+  left: 7px; 
+}
+.icon-w:before{
+  content: '\e800';
+  font-size: 18pt;
+  position: absolute;
+  left: 7px; 
+}
+.icon-s:before{
+  content: '\e802';
+  font-size: 18pt;
+  position: absolute;
+  left: 7px; 
+}
+.icon-c:before{
+  content: '\e805';
+  font-size: 18pt;
+  position: absolute;
+  left: 7px; 
+}
+.icon-u:before{
+  content: '\e804';
+  font-size: 18pt;
+  position: absolute;
+  left: 7px; 
+}
+.icon-o:before{
+  content: '\e806';
+  font-size: 18pt;
+  position: absolute;
+  left: 7px; 
+}
+.stack{
+  float: right;
+  width: 100px;
+  margin: 10px;
+  position: relative;
+}
+.fieldBox{
+  float: right;
+}
+.field{
+  height: 650px;
+  width: 449px;
+  margin: 10px;
+  background-color: transparent;
+  border: 1px solid #000;
+}
+.game {
+  float: left;
+  border: 4px outset #eee;
+  height: 680px;
+  width: 720px;
+  background: url('../images/drock029.jpg');
+}
+.card {
+  padding: 7px;
+  height: 150px;
+  width: 100px;
+  background: -moz-radial-gradient(center, ellipse cover,rgba(102,85,34,0) 40%,rgba(102,85,34,1) 65%),#874;
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(102,85,34,0) 40%,rgba(102,85,34,1) 65%),#874;
+  border: 3px solid #541;
+  border-radius: 3%;
+  position: absolute;
+  box-shadow: 5px 5px 10px rgba(10,10,10,0.5);
+  transition: all .3s;
+}
+.value {
+  position: absolute;
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 1px 0 #000,0 1px #000,-1px 0 #000,0 -1px #000;
+  top: 110px;
+  left: 26px;
+  transition: all .3s;
+}
+.name {
+  font-size: 10pt;
+}
+.playerInfo {
+  left: 475px;
+  top: 14px;
+  position: absolute;
+  background: #555;
+  border: 3px outset #333;
+  color: #fff;
+  width: 231px;
+  text-shadow: 1px 0 #000,0 1px #000,-1px 0 #000,0 -1px #000;
+}
+.playerInfo UL {
+  padding: 0 10px;
+}
+.playerInfo SPAN {
+  margin: 5px;
+  font-weight: bold;
+}
+.wld {
+  float: right;
+  clear: both;
+  margin: 0 10px !important;
+}
+.cardInfo {
+  left: 475px;
+  top: 175px;
+  width: 231px;
+  height: 195px;
+  position: absolute;
+  background: #555;
+  border: 3px outset #333;
+}
+.place {
+  color: #FFF;
+  position: absolute;
+  left: 10px;
+  top: 165px;
+  font-weight: bold;
+  text-shadow: 1px 0 #000,0 1px #000,-1px 0 #000,0 -1px #000;
+}
+.tempHand {
+  top: -135px;
+  left: -5px;
+  position: relative;
+}
+/*Creates the Arrows*/
+.arrow {
+  height: 0;
+  width: 0;
+  border: 8px solid transparent;
+  position: absolute;
+  transition: all .3s;
+}
+.up.left {
+  border-width: 5px;
+  top: 132px;
+  left: 82px;
+}
+.up.right {
+  border-width: 5px;
+  top: 132px;
+  left: 1px;
+}
+.down.left {
+  border-width: 5px;
+  top: 1px;
+  left: 82px;
+}
+.down.right {
+  border-width: 5px;
+  top: 1px;
+  left: 1px;
+}
+.up {
+  border-bottom-color: #fff;
+  top: -9px;
+  left: 39px;
+}
+.down {
+  border-top-color: #fff;
+  bottom: -9px;
+  left: 39px;
+}
+.left {
+  border-right-color: #fff;
+  left: -9px;
+  top: 65px;
+}
+.right {
+  border-left-color: #fff;
+  right: -9px;
+  top: 65px;
+}
+.selector {
+  border-width: 15px;
+  position: relative;
+}
+.left.selector {
+  top: 53px;
+  left: -4px;
+}
+.right.selector {
+  top: 22px;
+  left: 200px;
+}
+.deleteButton {
+  position: relative;
+  top: 99px;
+  left: 150px;
+  background: #777;
+  color: #ddd;
+  width: 70px;
+  text-align: center;
+  border: 3px outset #555;
+}
+/*End Arrows*/
+/*Card Face Colors*/
+.red {
+  background: -moz-linear-gradient(left bottom, rgba(0,0,0,0) 15%, #FAA 40%, rgba(0,0,0,0) 80%),#A00;
+  background: -webkit-linear-gradient(left bottom, rgba(0,0,0,0) 15%, #FAA 40%, rgba(0,0,0,0) 80%),#A00;
+  border-color: #500;
+}
+.blue {
+  background: -moz-linear-gradient(left bottom, rgba(0,0,0,0) 15%, #AAF 40%, rgba(0,0,0,0) 80%),#00A;
+  background: -webkit-linear-gradient(left bottom, rgba(0,0,0,0) 15%, #AAF 40%, rgba(0,0,0,0) 80%),#00A;
+  border-color: #005;
+}
+.green {
+  background: -moz-linear-gradient(left bottom, rgba(0,0,0,0) 15%, #AFA 40%, rgba(0,0,0,0) 80%),#0A0;
+  background: -webkit-linear-gradient(left bottom, rgba(0,0,0,0) 15%, #AFA 40%, rgba(0,0,0,0) 80%),#0A0;
+  border-color: #050;
+}
+.silver {
+  background: -moz-linear-gradient(left bottom, rgba(0,0,0,0) 15%, #FFF 40%, rgba(0,0,0,0) 80%),#AAA;
+  background: -webkit-linear-gradient(left bottom, rgba(0,0,0,0) 15%, #FFF 40%, rgba(0,0,0,0) 80%),#AAA;
+  border-color: #555;
+}
+.gold {
+  background: -moz-linear-gradient(left bottom, rgba(0,0,0,0) 15%, #FEA 40%, rgba(0,0,0,0) 80%),#A95;
+  background: -webkit-linear-gradient(left bottom, rgba(0,0,0,0) 15%, #FEA 40%, rgba(0,0,0,0) 80%),#A95;
+  border-color: #541;
+}
+/*End Card Face Colors*/
+/*Start Main Menu Styles*/
+.title {
+  width: 100%;
+  padding: 65px;
+  text-align: center;
+  font-size: 40pt;
+  color: #ff0;
+  text-shadow: 1px 0 #000, 0 1px #000, -1px 0 #000, 0 -1px #000;
+}
+.menuContainer {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  top: -191px;
+  padding: 260px;
+}
+.menuContainer UL {
+  text-align: center;
+  padding-left: 0px;
+  background: #555;
+  height: 100%;
+  width: 100%;
+  padding: 5px;
+  border: 5px outset #999;
+}
+.menuButton {
+  color: #fff;
+  background: #999;
+  border: 2px outset #fff;
+  margin: 20px 0;
+}
+.menuButton:hover {
+  color: #ddd;
+  background: #777;
+  border: 2px outset #ddd;
+}
+/*End Main Menu Styles*/
+/*Challenger Screen*/
+.challengeContain {
+}
+.challengeList {
+  -webkit-columns: 2;
+  -moz-columns: 2;
+}
+.challengeList:hover > li {
+  opacity: 0.3;
+  color: #b8860b;
+}
+.challengeList:hover > li:hover {
+  opacity: 1.0;
+  color: #ff0;
+}
+.challenge {
+  font-size: 15pt;
+  color: #ff0;
+  text-shadow: 1px 0 #000, 0 1px #000,-1px 0 #000,0 -1px #000;
+  padding: 5px;
+  clear: left;
+  height: 82px;
+  width: 240px;
+}
+.challenge IMG {
+  float: left;
+  clear: left;
+  border: 1px solid #000;
+  height: 80px;
+  width: 70px;
+}
+.challenge SPAN {
+  float: left;
+  display: block;
+  margin: 5px;
+}
+.challenge .empty {
+  color:#fff;
+  display: inline;
+  margin: 0;
+  float: initial;
+  text-shadow: 1px 0 #555, 0 1px #555,-1px 0 #555,0 -1px #555;
+  font-size: 14pt;
+}
+.challenge .power {
+  color:#A00;
+  display: inline;
+  margin: 0;
+  float: initial;
+  text-shadow: 1px 0 #500, 0 1px #500,-1px 0 #500,0 -1px #500;
+  font-size: 16pt;
+}
+/*End Challenger Screen*/
+/*End Play Area/Card Styles*/
+/*Stack Positions*/
+.top-0 {
+  top: 420px;
+}
+.top-1 {
+  top: 320px;
+}
+.top-2 {
+  top: 220px;
+}
+.top-3 {
+  top: 120px;
+}
+.top-4 {
+  top: 20px;
+}
+/*End Stack Positions*/
+.hand:hover, .selected, .fight {
+  left: -5px;
+  width: 110px;
+  height: 165px;
+  z-index: 14;
+  box-shadow: 0 0 10px 5px rgba(0,0,0,0.75);
+}
+.hand:hover .up.left, .selected .up.left, .fight .up.left{
+  top: 147px;
+  left: 92px;
+}
+.hand:hover .up.right, .selected .up.right, .fight .up.right{
+  top: 147px;
+}
+.hand:hover .down.left, .selected .down.left, .fight .down.left {
+  left: 92px;
+}
+.hand:hover .value, .selected .value, .fight .value {
+  left: 32px;
+  font-size: 13pt;
+}
+.block {
+  border: 20px double #555;
+  border-top-color: #666;
+  border-right-color: #444;
+  border-bottom-color: #333;
+  background-color: #888;
+}
+/*Score styles*/
+.score {
+  width: 130px;
+  height: 65px;
+  position: absolute;
+  top: 600px;
+  left: 10px;
+  padding: 5px;
+}
+.p1 {
+  color: #009;
+  text-shadow: 0 0 10px #ff0;
+  font-size: 35pt;
+  float: left;
+}
+.p2 {
+  color: #900;
+  text-shadow: 0 0 10px #ff0;
+  font-size: 35pt;
+  float: left;
+}
+.divide {
+  color: #ff0;
+  font-size: 35pt;
+  float: left;
+}
+.header {
+  color: #ff0;
+  font-size: 40pt;
+}
+/*End Score Styles*/
+/*Button Styles*/
+.buttons {
+  height: 90px;
+  width: 110px;
+  position: absolute;
+  top: 583px;
+  left: 598px;
+}
+.buttons UL{
+  padding: 0 4px 0 0;
+}
+.buttons LI {
+  width: 100%;
+  border: 2px outset #555;
+  background: #777;
+  text-align: center;
+  position: relative;
+  display: block;
+  color: #ddd;
+}
+.buttons LI:hover {
+  border: 2px outset #333;
+  background: #555;
+  color: #bbb;
+}
+/*End Button Styles*/
+/*Cursor Style*/
+.buttons LI:hover,.menuButton,.challenge:hover,.full:hover{
+  cursor: pointer;
+}
+/*End Cursor Style*/
+/*Field Grid Coordinates*/
+/*Right Stack*/
+.r.a1 {
+  top: 8px;
+  left: -462px;
+}
+.r.a2 {
+  top: 8px;
+  left: -351px;
+}
+.r.a3 {
+  top: 8px;
+  left: -240px;
+}
+.r.a4 {
+  top: 8px;
+  left: -128px;
+}
+.r.b1 {
+  top: 169px;
+  left: -462px;
+}
+.r.b2 {
+  top: 169px;
+  left: -351px;
+}
+.r.b3 {
+  top: 169px;
+  left: -240px;
+}
+.r.b4 {
+  top: 169px;
+  left: -128px;
+}
+.r.c1 {
+  top: 331px;
+  left: -462px;
+}
+.r.c2 {
+  top: 331px;
+  left: -351px;
+}
+.r.c3 {
+  top: 331px;
+  left: -240px;
+}
+.r.c4 {
+  top: 331px;
+  left: -128px;
+}
+.r.d1 {
+  top: 493px;
+  left: -462px;
+}
+.r.d2 {
+  top: 493px;
+  left: -351px;
+}
+.r.d3 {
+  top: 493px;
+  left: -240px;
+}
+.r.d4 {
+  top: 493px;
+  left: -128px;
+}
+/*End Right Stack*/
+/*Left Stack*/
+.l.a1 {
+  top: 8px;
+  left: 128px;
+}
+.l.a2 {
+  top: 8px;
+  left: 240px;
+}
+.l.a3 {
+  top: 8px;
+  left: 351px;
+}
+.l.a4 {
+  top: 8px;
+  left: 462px;
+}
+.l.b1 {
+  top: 169px;
+  left: 128px;
+}
+.l.b2 {
+  top: 169px;
+  left: 240px;
+} 
+.l.b3 {
+  top: 169px;
+  left: 351px;
+}
+.l.b4 {
+  top: 169px;
+  left: 462px;
+}
+.l.c1 {
+  top: 331px;
+  left: 128px;
+}
+.l.c2 {
+  top: 331px;
+  left: 240px;
+}
+.l.c3 {
+  top: 331px;
+  left: 351px;
+}
+.l.c4 {
+  top: 331px;
+  left: 462px;
+}
+.l.d1 {
+  top: 493px;
+  left: 128px;
+}
+.l.d2 {
+  top: 493px;
+  left: 240px;
+}
+.l.d3 {
+  top: 493px;
+  left: 351px;
+}
+.l.d4 {
+  top: 493px;
+  left: 462px;
+}
+/*End Left Stack*/
+/*End Coordinates*/
+/*Random Flags*/
+.played {
+  box-shadow: 0 0;
+}
+.on {
+}
+.off {
+  display: none;
+}
+.clear {
+  color: transparent !important;
+  border-color: transparent;
+  text-shadow: 0 0 transparent;
+  background-color: transparent;
+}
+.back {
+}
+.hand {
+}
+.faceUp{
+}
+.temp{
+  background-color: #000;
+}
+/*End Flags*/
