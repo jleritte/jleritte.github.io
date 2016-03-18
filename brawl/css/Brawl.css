@@ -1,0 +1,534 @@
+* {
+  font-family: sans-serif;
+  margin: 0;
+}
+BODY {
+  display: flex;
+  justify-content: center;
+  background: /*#555;*/#d35400;
+  height: 100vh;
+  overflow: hidden;
+}
+[blank] {
+  display: none !important;
+}
+INPUT[type=button] {
+  border: 0;
+  color: #f39c12;
+  background: #f1c40f;
+  width: 100px;
+}
+INPUT[type=button]:active {
+  color: #f1c40f;
+  background: #f39c12;
+}
+INPUT[type=button]:disabled {
+  color: #333;
+  background: #555;
+}
+
+[game] {
+  align-self: center;
+  width: 99vw;
+  height: 99vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  transition: all 0.6s ease;
+}
+[class^=p]{
+  display: flex;
+  /*transition: all 0.6s ease;*/
+  flex-basis: 0%;
+}
+.p2 {
+  flex-direction: row-reverse;
+  align-self: flex-end;
+  align-items: flex-end;
+}
+[menu] {
+  display: flex;
+  flex-flow: column;
+  width: 100px;
+  top:5px;
+  align-items: center;
+  transition: all 0.6s ease;
+}
+.p1 [menu] {
+  left: 5px;
+}
+.p2 [menu] {
+  left: 922px;
+}
+
+.selected {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+}
+.select {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+}
+.select:hover > .icon {
+  display: block;
+}
+.select:hover > .icon:hover:after {
+  opacity: 0.05;
+  background: #FFF;
+}
+.select > .icon {
+  position: relative;
+  height: 70px;
+  top: -125px;
+  display: none;
+  width: 100px;
+}
+.p1 .select > .icon {
+  left: -101px;
+}
+.p2 .select > .icon {
+  left: 101px;
+}
+.select > .icon:after {
+  content: ' ';
+  position: absolute;
+  width: 100px;
+  height: 70px;
+  background: #000;
+  opacity: 0.7;
+  transition: all 0.6s ease;
+}
+.select:before, .select > .icon:before {
+  content: attr(value);
+  position: absolute;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 1px 0 #FFF, 0 1px #FFF, -1px 0 #FFF, 0 -1px #FFF;
+  width:100px;
+}
+.icon {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+[cdlt] {
+  transition: all 0.6s ease;
+  margin-top: 5px;
+  border: 1px solid black;
+  opacity: 0;
+  width: 19px;
+  padding: 2px;
+}
+
+[playArea] {
+  align-self: center;
+  width: 100%;
+  height: 209px;
+  display: flex;
+  justify-content: center;
+}
+
+.contain {
+  position: absolute;
+  perspective: 700;
+  transition: all 0.5s ease;
+  padding-top: 0;
+  width: 152px;
+  height: 211px;
+  top: -300px;
+}
+.p1 .contain {
+  left: 0;
+}
+.p2 .contain {
+  left: 550px;
+}
+
+[card] {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  width: 152px;
+  height: 211px;
+  opacity: 0;
+  transition: all 0.5s ease;
+  transform-style: preserve-3d;
+  border-radius: 5px;
+}
+
+.deck:hover, .deck:hover [back], .deck:hover [front] {
+  width: 162px;
+  height: 221px;
+  background-size: 162px 221px;
+}
+.deck:hover {
+  box-shadow: 5px 5px 10px black;
+}
+
+[front], [back] {
+  position: absolute;
+  width: 150px;
+  height: 209px;
+  backface-visibility: hidden;
+  border-radius: 5px;
+  background-size: 150px 209px;
+  background-repeat: no-repeat;
+  transition: all 0.5s ease;
+}
+
+[front] {
+  transform: rotateY(180deg);
+}
+
+[back] {
+  border: 1px solid #000;
+}
+
+.deckLanding, .discard {
+  border: 1px solid black;
+  height: 221px;
+  top: 0;
+  width: 162px;
+  z-index: -1;
+  transition: all 0.6s ease;
+}
+.deckLanding {
+  background: linear-gradient(125deg, rgba(0,0,0,0) 49%,rgba(255,0,0,1) 50%,rgba(0,0,0,0) 51%),
+              linear-gradient(235deg, rgba(0,0,0,0) 49%, rgba(255,0,0,1) 50%, rgba(0,0,0,0) 51%),
+              #bdc3c7;
+  box-shadow: inset 0 0 0 7px #bdc3c7;
+}
+.discard {
+  background: #bdc3c7;
+}
+.p1 .deckLanding, .p1 .discard {
+  margin-left: 15px;
+}
+.p2 .deckLanding, .p2 .discard {
+  margin-right: 15px;
+}
+.vsContain {
+  transition: all 0.6s ease;
+  opacity: 1;
+  align-self: center;
+  margin: 0 10px;
+}
+.vsContain > INPUT {
+  position: relative;
+  top: 25px;
+}
+.vs {
+  height:66px;
+  width: 66px;
+  position: relative;
+  background: #f1c40f;
+  left: 17px;
+  top: 5px;
+}
+.vs > DIV {
+  background: url("../img/versus.png") no-repeat center;
+  background-size: 50px 66px;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  position: relative;
+}
+.vs:before, .vs:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 66px;
+  width: 66px;
+  background: #f1c40f;
+}
+.vs:before {
+  transform: rotate(30deg);
+}
+.vs:after {
+  transform: rotate(60deg);
+}
+
+/*Character styles*/
+.icon.Bennett {
+  background-image: url("../img/Bennett/IconBennett350.jpg");
+}
+.icon.Chris {
+  background-image: url("../img/Chris/IconChris350.jpg");
+}
+.icon.Darwin {
+  background-image: url("../img/Darwin/IconDarwin350.jpg");
+}
+.icon.Hale {
+  background-image: url("../img/Hale/IconHale350.jpg");
+}
+.icon.Morgan {
+  background-image: url("../img/Morgan/IconMorgan350.jpg");
+}
+.icon.Pearl {
+  background-image: url("../img/Pearl/IconPearl350.jpg");
+}
+.icon.Empty {
+  background-image: url("../img/blank.png");
+}
+
+.Bennett > [back] {
+  background-image: url("../img/Bennett/back.jpg");
+}
+.Bennett > [front].base {
+  background-image: url("../img/Bennett/base.jpg");
+}
+.Bennett > [front].hitB {
+  background-image: url("../img/Bennett/hitB.jpg");
+}
+.Bennett > [front].hit2B {
+  background-image: url("../img/Bennett/hit2B.jpg");
+}
+.Bennett > [front].blockB {
+  background-image: url("../img/Bennett/blockB.jpg");
+}
+.Bennett > [front].hitG {
+  background-image: url("../img/Bennett/hitG.jpg");
+}
+.Bennett > [front].hit2G {
+  background-image: url("../img/Bennett/hit2G.jpg");
+}
+.Bennett > [front].blockG {
+  background-image: url("../img/Bennett/blockG.jpg");
+}
+.Bennett > [front].hitR {
+  background-image: url("../img/Bennett/hitR.jpg");
+}
+.Bennett > [front].hit2R {
+  background-image: url("../img/Bennett/hit2R.jpg");
+}
+.Bennett > [front].blockR {
+  background-image: url("../img/Bennett/blockR.jpg");
+}
+.Bennett > [front].clear {
+  background-image: url("../img/Bennett/clear.jpg");
+}
+.Bennett > [front].press {
+  background-image: url("../img/Bennett/press.jpg");
+}
+.Bennett > [front].freeze {
+  background-image: url("../img/Bennett/freeze.jpg");
+}
+
+.Chris > [back] {
+  background-image: url("../img/Chris/back.jpg");
+}
+.Chris > [front].base {
+  background-image: url("../img/Chris/base.jpg");
+}
+.Chris > [front].hitB {
+  background-image: url("../img/Chris/hitB.jpg");
+}
+.Chris > [front].hit2B {
+  background-image: url("../img/Chris/hit2B.jpg");
+}
+.Chris > [front].blockB {
+  background-image: url("../img/Chris/blockB.jpg");
+}
+.Chris > [front].hitG {
+  background-image: url("../img/Chris/hitG.jpg");
+}
+.Chris > [front].hit2G {
+  background-image: url("../img/Chris/hit2G.jpg");
+}
+.Chris > [front].blockG {
+  background-image: url("../img/Chris/blockG.jpg");
+}
+.Chris > [front].hitR {
+  background-image: url("../img/Chris/hitR.jpg");
+}
+.Chris > [front].hit2R {
+  background-image: url("../img/Chris/hit2R.jpg");
+}
+.Chris > [front].blockR {
+  background-image: url("../img/Chris/blockR.jpg");
+}
+.Chris > [front].clear {
+  background-image: url("../img/Chris/clear.jpg");
+}
+.Chris > [front].press {
+  background-image: url("../img/Chris/press.jpg");
+}
+.Chris > [front].freeze {
+  background-image: url("../img/Chris/freeze.jpg");
+}
+
+.Darwin > [back] {
+  background-image: url("../img/Darwin/back.jpg");
+}
+.Darwin > [front].base {
+  background-image: url("../img/Darwin/base.jpg");
+}
+.Darwin > [front].hitB {
+  background-image: url("../img/Darwin/hitB.jpg");
+}
+.Darwin > [front].hit2B {
+  background-image: url("../img/Darwin/hit2B.jpg");
+}
+.Darwin > [front].blockB {
+  background-image: url("../img/Darwin/blockB.jpg");
+}
+.Darwin > [front].hitG {
+  background-image: url("../img/Darwin/hitG.jpg");
+}
+.Darwin > [front].hit2G {
+  background-image: url("../img/Darwin/hit2G.jpg");
+}
+.Darwin > [front].blockG {
+  background-image: url("../img/Darwin/blockG.jpg");
+}
+.Darwin > [front].hitR {
+  background-image: url("../img/Darwin/hitR.jpg");
+}
+.Darwin > [front].hit2R {
+  background-image: url("../img/Darwin/hit2R.jpg");
+}
+.Darwin > [front].blockR {
+  background-image: url("../img/Darwin/blockR.jpg");
+}
+.Darwin > [front].clear {
+  background-image: url("../img/Darwin/clear.jpg");
+}
+.Darwin > [front].press {
+  background-image: url("../img/Darwin/press.jpg");
+}
+.Darwin > [front].freeze {
+  background-image: url("../img/Darwin/freeze.jpg");
+}
+
+.Hale > [back] {
+  background-image: url("../img/Hale/back.jpg");
+}
+.Hale > [front].base {
+  background-image: url("../img/Hale/base.jpg");
+}
+.Hale > [front].hitB {
+  background-image: url("../img/Hale/hitB.jpg");
+}
+.Hale > [front].hit2B {
+  background-image: url("../img/Hale/hit2B.jpg");
+}
+.Hale > [front].blockB {
+  background-image: url("../img/Hale/blockB.jpg");
+}
+.Hale > [front].hitG {
+  background-image: url("../img/Hale/hitG.jpg");
+}
+.Hale > [front].hit2G {
+  background-image: url("../img/Hale/hit2G.jpg");
+}
+.Hale > [front].blockG {
+  background-image: url("../img/Hale/blockG.jpg");
+}
+.Hale > [front].hitR {
+  background-image: url("../img/Hale/hitR.jpg");
+}
+.Hale > [front].hit2R {
+  background-image: url("../img/Hale/hit2R.jpg");
+}
+.Hale > [front].blockR {
+  background-image: url("../img/Hale/blockR.jpg");
+}
+.Hale > [front].clear {
+  background-image: url("../img/Hale/clear.jpg");
+}
+.Hale > [front].press {
+  background-image: url("../img/Hale/press.jpg");
+}
+.Hale > [front].freeze {
+  background-image: url("../img/Hale/freeze.jpg");
+}
+
+.Morgan > [back] {
+  background-image: url("../img/Morgan/back.jpg");
+}
+.Morgan > [front].base {
+  background-image: url("../img/Morgan/base.jpg");
+}
+.Morgan > [front].hitB {
+  background-image: url("../img/Morgan/hitB.jpg");
+}
+.Morgan > [front].hit2B {
+  background-image: url("../img/Morgan/hit2B.jpg");
+}
+.Morgan > [front].blockB {
+  background-image: url("../img/Morgan/blockB.jpg");
+}
+.Morgan > [front].hitG {
+  background-image: url("../img/Morgan/hitG.jpg");
+}
+.Morgan > [front].hit2G {
+  background-image: url("../img/Morgan/hit2G.jpg");
+}
+.Morgan > [front].blockG {
+  background-image: url("../img/Morgan/blockG.jpg");
+}
+.Morgan > [front].hitR {
+  background-image: url("../img/Morgan/hitR.jpg");
+}
+.Morgan > [front].hit2R {
+  background-image: url("../img/Morgan/hit2R.jpg");
+}
+.Morgan > [front].blockR {
+  background-image: url("../img/Morgan/blockR.jpg");
+}
+.Morgan > [front].clear {
+  background-image: url("../img/Morgan/clear.jpg");
+}
+.Morgan > [front].press {
+  background-image: url("../img/Morgan/press.jpg");
+}
+.Morgan > [front].freeze {
+  background-image: url("../img/Morgan/freeze.jpg");
+}
+
+.Pearl > [back] {
+  background-image: url("../img/Pearl/back.jpg");
+}
+.Pearl > [front].base {
+  background-image: url("../img/Pearl/base.jpg");
+}
+.Pearl > [front].hitB {
+  background-image: url("../img/Pearl/hitB.jpg");
+}
+.Pearl > [front].hit2B {
+  background-image: url("../img/Pearl/hit2B.jpg");
+}
+.Pearl > [front].blockB {
+  background-image: url("../img/Pearl/blockB.jpg");
+}
+.Pearl > [front].hitG {
+  background-image: url("../img/Pearl/hitG.jpg");
+}
+.Pearl > [front].hit2G {
+  background-image: url("../img/Pearl/hit2G.jpg");
+}
+.Pearl > [front].blockG {
+  background-image: url("../img/Pearl/blockG.jpg");
+}
+.Pearl > [front].hitR {
+  background-image: url("../img/Pearl/hitR.jpg");
+}
+.Pearl > [front].hit2R {
+  background-image: url("../img/Pearl/hit2R.jpg");
+}
+.Pearl > [front].blockR {
+  background-image: url("../img/Pearl/blockR.jpg");
+}
+.Pearl > [front].clear {
+  background-image: url("../img/Pearl/clear.jpg");
+}
+.Pearl > [front].press {
+  background-image: url("../img/Pearl/press.jpg");
+}
+.Pearl > [front].freeze {
+  background-image: url("../img/Pearl/freeze.jpg");
+}
