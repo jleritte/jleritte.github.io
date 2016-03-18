@@ -1,0 +1,133 @@
+<!--https://jsfiddle.net/jleritte/jfhz5od1/-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Test</title>
+	<style>
+		HTML {
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		/*Tootip*/
+		[ta]:hover:after {
+			opacity: 1;
+		}
+		[ta]:after {
+			content: attr(ta);
+			background-color: #CCC;
+			border: 1px sodivd #000;
+			border-radius: 5px;
+			opacity: 0;
+			position: relative;
+			top: -10px;
+			transition: 1s;
+			transition-delay: 0.5s;
+		}
+		/*cursor fun*/
+		.grid {
+			cursor: none;
+			display:flex;
+			flex-flow: row wrap;
+			margin: 0;
+			position: fixed;
+			top: 0;
+			width: 100vw;
+			z-index: 10000;
+		}
+		.grid:hover > .block {
+			opacity: 1;
+		}
+		.grid:hover > .block:hover {
+			opacity: 0;
+			background-color: #F0F;
+			transition: none;
+		}
+		.block {
+			background-color: #000;
+			width: 10vw;
+			height: 10vw;
+			margin: 0;
+			transition: 5s;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc bibendum tristique nulla, a convallis orci vehicula ac. Donec lacinia lacus quis varius vulputate. Nunc sit amet elit id massa luctus tempus in id turpis. Duis convallis erat id massa pulvinar malesuada. Maecenas aliquet aliquet metus, vel efficitur justo porta non. Nam laoreet, orci ac porta aliquam, justo justo iaculis ipsum, sed pharetra erat est et ex. Mauris consectetur rhoncus justo sed congue. Fusce at augue in nisi lobortis varius. Aenean suscipit, lectus a lobortis placerat, sapien odio pellentesque diam, nec malesuada est nisi id ex. Suspendisse fermentum lacinia est, ac gravida arcu finibus ac. Suspendisse commodo gravida diam, at cursus eros convallis a. Phasellus vitae eleifend urna. Cras scelerisque ante ac erat sollicitudin, vel feugiat libero consectetur.</p>
+
+		<p ta="Tool Tips are Cool! B)">Cras augue quam, viverra in vehicula sit amet, gravida sit amet lacus. Aenean a mollis erat, at euismod leo. Maecenas ultrices lacus vitae malesuada lobortis. Nunc et laoreet nulla. Mauris orci massa, egestas ac fermentum sed, tempus non purus. Fusce ullamcorper neque sapien, id laoreet mi ultrices at. Aliquam faucibus sodales sagittis. Vivamus ut scelerisque arcu. Ut ac leo eget quam malesuada facilisis sit amet vel arcu. Aenean odio augue, cursus id lectus at, dapibus efficitur nibh. Sed blandit dolor a nibh egestas, non vehicula sapien ultrices. Integer posuere, leo porta fringilla varius, eros nulla fermentum urna, vitae hendrerit dui risus vel felis. Pellentesque gravida eu sem vitae efficitur. Nunc dolor turpis, fermentum sit amet ultrices id, consectetur in ipsum. Proin tristique lectus eu felis aliquam, ac ultrices mauris sollicitudin.</p>
+
+		<p>In ut orci luctus, placerat dolor a, ultrices arcu. Nunc ultrices tortor et elit fringilla, a suscipit elit volutpat. In in magna luctus, maximus massa ac, iaculis neque. Aenean ut nunc non ante dictum ornare. Nulla vel magna vel elit volutpat aliquam nec vitae purus. Morbi vel tempor turpis. Integer consequat mauris a risus vestibulum, vel dapibus lacus fringilla. Fusce lectus diam, efficitur ullamcorper sodales et, sagittis ut nibh. Cras et hendrerit sapien, et finibus neque. Vestibulum sed erat eget dui cursus aliquet. Nam aliquam finibus venenatis. Suspendisse sed ipsum purus.</p>
+
+		<p>Etiam porttitor tortor elit, non suscipit dolor elementum et. Duis urna dui, blandit at elit id, sollicitudin consectetur tellus. Vivamus ultrices ac elit eget congue. Ut sit amet neque in enim auctor aliquam quis condimentum ante. Aenean efficitur, lectus quis accumsan ultrices, odio dui auctor orci, eget laoreet sapien libero vitae est. Nulla tempus, magna sed vehicula feugiat, orci sem eleifend nisl, laoreet tempor dui metus sit amet ipsum. Aliquam tempus vulputate ornare. Morbi elementum porta ultrices. Donec bibendum magna ac mi consectetur dictum. Donec ut diam dapibus, scelerisque ante ac, pretium magna. Donec tempor, risus id accumsan posuere, mi felis dapibus purus, et posuere risus sapien vel odio.</p>
+
+		<p>Proin a scelerisque leo. Ut egestas sed metus nec pellentesque. Nunc vel odio eu velit volutpat faucibus eu non turpis. Vestibulum fringilla eu orci et faucibus. Curabitur mollis ultricies purus et varius. In aliquam lorem tellus, quis euismod purus suscipit vitae. Aliquam tortor tortor, accumsan ac nisi non, tristique pellentesque sapien. Etiam ac condimentum ligula, sit amet tempor nisl.</p> 
+	</div>
+	<input type="button" onclick="grid()" value="1"/>
+	<input type="button" onclick="grid(5)" value="5"/>
+	<input type="button" onclick="grid(10)" value="10"/>
+	<input type="button" onclick="grid(20)" value="20"/>
+	<script>
+		var DIV = 'div';
+		function grid(size) {
+			size = size ? size : 1;
+			var num = (window.innerWidth * window.innerHeight) / ((size * 10) * (size * 10)),
+				body = document.getElementsByTagName('body')[0],
+				grid = document.createElement(DIV),
+				i;
+
+			// grid.style.cursor = 'none';
+			// grid.style.display = 'flex';
+			// grid.style.flexFlow = 'row wrap';
+			// grid.style.margin = 0;
+			// grid.style.position = 'fixed';
+			// grid.style.top = 0;
+			// grid.style.width = 100+'vw';
+			// grid.style.zIndex = 10000;
+			grid.className = 'grid';
+			for(i = num; i > 0; i--){
+				var tmp = block(size);
+				if(i === num){
+					tmp.addEventListener('click',clear);
+				}
+				grid.appendChild(tmp);
+			}
+			body.appendChild(grid);
+		}
+		function block(size) {
+			var block = document.createElement(DIV);
+
+			size = size ? size : 1;
+			block.style.width = size+'vw';
+			block.style.height = size+'vw';
+			// block.style.backgroundColor = '#000';
+			// block.addEventListener('mouseover', seethrough);
+			// block.addEventListener('mouseout', blackout);
+			block.className = 'block';
+			return block;
+		}
+		function seethrough() {
+			var elem = this
+			this.style.transition = 0+'s';
+			this.style.opacity = 0.1;
+			this.style.backgroundColor = '#F0F';
+			// setTimeout(function(){
+			// 	if(elem){
+			// 		elem.parentNode.removeChild(elem);
+			// 	}
+			// },2000);
+		}
+		function blackout() {
+			this.style.transition = 5+'s';
+			this.style.opacity = 1;
+			// this.style.backgroundColor = '#000';
+		}
+		function clear() {
+			setTimeout(function() {
+				var grid = document.getElementsByClassName('grid')[0];
+				grid.parentNode.removeChild(grid);
+			},10000);
+		}
+	</script>
+</body>
+</html>
