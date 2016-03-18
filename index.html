@@ -90,7 +90,7 @@
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
     <script>
-var map, infowindow, service, geocoder, places = localStorage.places || {}, userCount, names = {},vote = document.querySelector('#vote'); 
+var map, infowindow, service, geocoder, places = localStorage.places || {}, userCount, names = {},vote = document.getElementById('vote'); 
 
 function initialize() {
 	buildMenu();
@@ -176,8 +176,7 @@ function updateLabel() {
 
 function getGrub() {
 	var address = document.getElementsByClassName('address')[0].value,
-		radius = document.getElementsByClassName('radius')[0].value,
-		mapCanvas = document.querySelector('#mapCanvas');
+		radius = document.getElementsByClassName('radius')[0].value;
 
 	geocoder.geocode( { 'address': address}, function(results, status) {
     	if (status == google.maps.GeocoderStatus.OK) {
@@ -188,7 +187,7 @@ function getGrub() {
 				types: ['restaurant']
 			};
 			if(!service){
-				map = new google.maps.Map(mapCanvas, {
+				map = new google.maps.Map(document.getElementById('map-canvas'), {
 				  center: center,
 				  zoom: 15
 				});
