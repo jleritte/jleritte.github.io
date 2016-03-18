@@ -90,7 +90,7 @@
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
     <script>
-var map, infowindow, service, geocoder, places = localStorage.places || {}, userCount, names = {},vote = document.getElementById('vote'); 
+var map, infowindow, service, geocoder, places = localStorage.places || {}, userCount, names = {}; 
 
 function initialize() {
 	buildMenu();
@@ -180,7 +180,7 @@ function getGrub() {
 
 	geocoder.geocode( { 'address': address}, function(results, status) {
     	if (status == google.maps.GeocoderStatus.OK) {
-    		var center = results[0].geometry.location;
+    		var center = results[0].geometry.location,vote = document.getElementById('vote');
 			var request = {
 				location: center,
 				radius: radius,
