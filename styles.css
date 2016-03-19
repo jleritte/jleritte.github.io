@@ -1,0 +1,60 @@
+BODY {
+	color: #2c3e50;
+	background: #ecf0f1;
+	display: flex;
+	flex-wrap: wrap;
+}
+A {
+	color: #2c3e50;
+	text-decoration: none;
+}
+FOOTER {
+	border-top: 1px solid #95a5a6;
+	width: 100%;
+	text-align: right;
+}
+.title {
+	width: 49%;
+	text-align: center;
+	margin-bottom: 20px;
+	padding-right: 1%;
+}
+.title H1 {
+	margin-bottom: 2px;
+}
+.about-me {
+	margin-top: 5px;
+}
+.links {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 50%;
+}
+.links A {
+	background: #95a5a6;
+	border: 1px solid #2c3e50;
+	line-height: 5;
+	margin: 0 0 1vh;
+	text-align: center;
+	width: 49%;
+}
+.links A:nth-child(2n+2) {
+	margin: 0 0 1vh 1%;
+}
+.links A:hover {
+	background: #7f8c8d;
+	color: #34495e;
+}
+@media (max-width: 800px) {
+	.title,
+	.links {
+		width: 100%;
+	}
+	.links A {
+		width: 100%;
+	}
+	.links A:nth-child(2n+2) {
+		margin-left: 0;
+	}
+}
