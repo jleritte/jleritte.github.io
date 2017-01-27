@@ -147,7 +147,7 @@ function addUser() {
 	userCount++;
 	keys.forEach(function(elem){
 		var place = locals[elem];
-		place.users[userGuid] = null;
+		place.users[userGuid] = 'null';
 	});
 	names[userGuid] = names[userGuid] || 'User ' + userCount;
 	appModel.set('size',userCount);
