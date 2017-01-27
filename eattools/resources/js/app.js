@@ -325,9 +325,9 @@ var appModel = require('datastore'),
 
 xtag.register('vote-toggle',{
 	content: ['<input value="u" type="radio">',
-		'<label></label>',
+		'<label class="icon-thumbs-up"></label>',
 		'<input value="d" type="radio">',
-		'<label></label>'
+		'<label class="icon-thumbs-down"></label>'
 		].join(''),
 	methods: {
 		render: function(name,i,vote) {
@@ -437,12 +437,10 @@ function initialize() {
 
 	appModel.database = firebase.database();
 	appModel.database.ref('meals/'+appModel.meal).on('value',function(data) {
-		console.log(data.val());
 		appModel.set('',data.val());
 		document.querySelector('name-contain').render();
 		document.querySelector('vote-contain').render();
 		document.querySelector('.sortList').click();
-
 	});
 
 	document.querySelector('.fixed').appendChild(Menu());
