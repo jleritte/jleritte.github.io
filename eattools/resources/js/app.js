@@ -101,19 +101,24 @@ xtag.register('control-menu',{
 		'click:delegate(.newList)': getGrub,
 		'click:delegate(.newUser)': addUser,
 		'click:delegate(.sortList)': sortList,
-		'input:delegate(.radius)':updateLabel
+		'input:delegate(.radius)':updateLabel,
+		'change:delegate(.address)': function() {
+			appModel.set('address',this.value);
+		}
 	}
 });
 
 function updateLabel() {
 	var test = this.parentNode.children[3];
 	test.textContent = 'Radius: ' + this.value;
+	appModel.set('radius',+this.value);
 }
 
 function getGrub() {
 	var address = document.querySelector('.address').value,
 		radius = document.querySelector('.radius').value;
 
+	appModel.temp = {};
 	appModel.geocoder.geocode( { 'address': address}, function(results, status) {
 			if (status === google.maps.GeocoderStatus.OK) {
 				var center = results[0].geometry.location,
@@ -131,6 +136,7 @@ function getGrub() {
 				}
 				appModel.set('locals',{});
 				document.querySelector('vote-contain').render();
+				appModel.set('radius',+radius);
 				appModel.service.nearbySearch(request, callback);
 			} else {
 				alert("Geocode was not successful for the following reason: " + status);
@@ -141,21 +147,15 @@ function getGrub() {
 function addUser() {
 	var names = appModel.get('names'),
 		locals = appModel.get('locals'),
-		userGuid = Object.keys(names)[userCount] || getGUID(),
 		keys = Object.keys(locals),
-		userCount = appModel.get('size');
-	userCount++;
+		userGuid = getGUID();
 	keys.forEach(function(elem){
 		var place = locals[elem];
 		place.users[userGuid] = 'null';
 	});
-	names[userGuid] = names[userGuid] || 'User ' + userCount;
-	appModel.set('size',userCount);
+	names[userGuid] = names[userGuid] || 'User ' + (Object.keys(names).length+1);
 	appModel.set('locals',locals);
 	appModel.set('names',names);
-	document.querySelector('name-contain').render();
-	document.querySelector('vote-contain').render();
-	document.querySelector('.sortList').click();
 }
 
 function sortList() {
@@ -181,7 +181,6 @@ function newMeal() {
 		var newNames = {};
 		newNames[first] = names[first];
 		appModel.set('names',newNames);
-		appModel.set('size',1);
 		getGrub();
 	} else {
 		return;
@@ -191,7 +190,6 @@ function newMeal() {
 module.exports = function() {
 	var menu = document.createElement('control-menu');
 
-	menu.render();
 	return menu;
 };
 },{"datastore":7,"utils":10,"x-tag":"x-tag"}],3:[function(require,module,exports){
@@ -266,22 +264,16 @@ function removeUser(e) {
 	var guid = e.currentTarget.user,
 		names = appModel.get('names'),
 		name = names[guid],
-		userCount = appModel.get('size'),
 		locals = appModel.get('locals');
 	if(confirm('Are you sure you want to remove ' + name)){
-		userCount--;
 		var keys = Object.keys(locals);
 		keys.forEach(function(elem){
 			var place = locals[elem];
 			delete place.users[guid];
 		});
 		delete names[guid];
-		appModel.set('size',userCount);
 		appModel.set('locals',locals);
 		appModel.set('names',names);
-		document.querySelector('name-contain').render();
-		document.querySelector('vote-contain').render();
-		document.querySelector('.sortList').click();
 	}
 }
 },{"datastore":7,"x-tag":"x-tag"}],5:[function(require,module,exports){
@@ -316,7 +308,6 @@ xtag.register('vote-contain',{
 module.exports = function() {
 	var votes = document.createElement('vote-contain');
 
-	votes.render();
 	return votes;
 };
 },{"datastore":7,"list-item":1,"x-tag":"x-tag"}],6:[function(require,module,exports){
@@ -368,12 +359,14 @@ function saveVote(e) {
 
 	locals[this.local].users[this.user] = e.target.value;
 	appModel.set('locals',locals);
-	appModel.database.ref('meals/'+appModel.meal).update(appModel.get(''));
 	contain.paint();
 }
 },{"datastore":7,"x-tag":"x-tag"}],7:[function(require,module,exports){
 var data = {},
 	scope = 'places';
+
+data.database = undefined;
+data.meal = undefined;
 
 data.set = function(key,value) {
 	if(key === '') {
@@ -398,10 +391,8 @@ function sync(){
 
 	data[scope] = Object.assign(stored, data[scope]);
 	localStorage.setItem(scope, JSON.stringify(data[scope]));
+	data.database.ref('meals/'+data.meal).update(data[scope]);
 }
-
-
-sync();
 
 module.exports = data;
 },{}],8:[function(require,module,exports){
@@ -434,18 +425,14 @@ initialize();
 
 function initialize() {
 	parseHash();
+	var menu = Menu(),
+		nameContain = Names(),
+		voteContain = Votes();
 
 	appModel.database = firebase.database();
-	appModel.database.ref('meals/'+appModel.meal).on('value',function(data) {
-		appModel.set('',data.val());
-		document.querySelector('name-contain').render();
-		document.querySelector('vote-contain').render();
-		document.querySelector('.sortList').click();
-	});
-
-	document.querySelector('.fixed').appendChild(Menu());
-	document.querySelector('.fixed').appendChild(Names());
-	document.body.appendChild(Votes());
+	document.querySelector('.fixed').appendChild(menu);
+	document.querySelector('.fixed').appendChild(nameContain);
+	document.body.appendChild(voteContain);
 
 	appModel.geocoder = new google.maps.Geocoder();
 	if (!appModel.meal){
@@ -455,9 +442,10 @@ function initialize() {
 
 		appModel.set('names', names);
 		appModel.set('locals',{});
-		appModel.set('meal',getGUID());
+		appModel.meal = getGUID();
+		appModel.temp = {};
 
-		window.location.hash = 'meal='+appModel.get('meal')+';user='+userID;
+		window.location.hash = 'meal='+appModel.meal+';user='+userID;
 		parseHash();
 
 		navigator.geolocation.getCurrentPosition(function(position) {
@@ -472,17 +460,21 @@ function initialize() {
 
 			var request = {
 				location: center,
-				radius: appModel.get('radius')||1000,
+				radius: 1000,
 				types: ['restaurant']
 			};
 			appModel.service = new google.maps.places.PlacesService(map);
 			appModel.service.nearbySearch(request, callback);
 		});
-	} else {
-		document.querySelector('name-contain').render();
-		document.querySelector('vote-contain').render();
-		document.querySelector('.sortList').click();
 	}
+
+	appModel.database.ref('meals/'+appModel.meal).on('value',function(data) {
+		appModel.set('',data.val());
+		menu.render();
+		nameContain.render();
+		voteContain.render();
+		menu.querySelector('.sortList').click();
+	});
 }
 
 function ajax(url,callback) {
@@ -524,7 +516,6 @@ function callback(results, status, page) {
 	if (status === google.maps.places.PlacesServiceStatus.OK) {
 		var names = appModel.get('names'),
 			locals = appModel.get('locals'),
-			userCount = appModel.get('size') || 1,
 			userKeys = Object.keys(names);
 
 		results.forEach(function(result) {
@@ -535,17 +526,11 @@ function callback(results, status, page) {
 				locals[id].users[user] = "null";
 			});
 		});
-		appModel.set('locals', locals);
-		appModel.set('address',document.getElementsByClassName('address')[0].value);
-		appModel.set('radius',+document.querySelector('.radius').value);
-		appModel.set('size',userCount);
+		Object.assign(appModel.temp, locals);
 		if (page.hasNextPage) {
 			page.nextPage();
 		} else {
-			document.querySelector('name-contain').render();
-			document.querySelector('vote-contain').render();
-			document.querySelector('.sortList').click();
-			appModel.database.ref('meals/'+appModel.meal).set(appModel.get(''));
+			appModel.set('locals', locals);
 		}
 	}
 }
