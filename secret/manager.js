@@ -59,8 +59,8 @@ function selectRecord(e) {
 }
 
 async function copyPass(e) {
-	// record = await vault.retrieveRecord(e.target.dataset.UUID)
-	navigator.clipboard.writeText('copy')
+	record = await vault.retrieveRecord(e.target.dataset.UUID)
+	navigator.clipboard.writeText(record.password)
 }
 
 async function editRecord(e) {
