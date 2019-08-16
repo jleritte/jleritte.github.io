@@ -59,13 +59,8 @@ function selectRecord(e) {
 }
 
 async function copyPass(e) {
-	let text = new ui.Input(body)
-	text.style.position = 'absolute'
-	text.style.top = '-100vh'
 	// record = await vault.retrieveRecord(e.target.dataset.UUID)
-	text.value = 'test'//record.password
-	text.select()
-	console.log(document.execCommand('copy'))
+	navigator.clipboard.writeText('copy')
 }
 
 async function editRecord(e) {
