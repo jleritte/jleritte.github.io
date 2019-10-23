@@ -1,5 +1,6 @@
 // DOM FUNCTIONS
-let proto
+let proto, local = /localhost|127\.0\.0\.1/.test(window.location) ? "" : 'https://jleritte.github.io/roller/'
+
 class DOM {
   constructor() {
     proto = Object.getPrototypeOf(this)
@@ -35,7 +36,7 @@ class DOM {
       after = document.querySelector('title')
     link.rel = 'stylesheet'
     link.type = 'text/css'
-    link.href = url
+    link.href = local + url
     after.parentNode.insertBefore(link,after)
   }
   icon() {
@@ -43,7 +44,7 @@ class DOM {
       after = document.querySelector('title')
     link.rel = 'icon'
     link.type = 'image/x-icon'
-    link.href = './img/favicon.ico'
+    link.href = local + 'img/favicon.ico'
     after.parentNode.insertBefore(link,after)
   }
   set text(text) {
