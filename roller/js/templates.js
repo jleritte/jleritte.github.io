@@ -55,7 +55,7 @@ export function ui(parent) {
   if(!parent) return
   let node = uiele.elements
   if(parent.elements === document.body) {
-    $$.css('css/fullpage.css')
+    $$.css('./css/fullpage.css')
     $$.query('title').text = 'Dice Roller'
     $$.icon()
     attachKeyHandlers()

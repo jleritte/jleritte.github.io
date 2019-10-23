@@ -8,7 +8,7 @@ import h from './handlers.js'
 let parent = $$.query('.rollContain').elements ? $$.query('.rollContain') : $$.query('body')
 class Roller {
   constructor() {
-    $$.css('css/roller.css')
+    $$.css('./css/roller.css')
     ui(parent)
   }
 }
