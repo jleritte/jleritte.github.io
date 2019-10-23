@@ -53,6 +53,7 @@ let uiele = $$.create(uiContent),
 
 export function ui(parent) {
   if(!parent) return
+  let node = uiele.elements
   if(parent.elements === document.body) {
     $$.css('css/fullpage.css')
     $$.query('title').text = 'Dice Roller'
@@ -62,7 +63,6 @@ export function ui(parent) {
     $$.query('.dr_usage',node).click = helpHandle
     helpele.click = helpHandle
   }
-  let node = uiele.elements
   $$.query('.dr_rollButton',node).click = h.roll
   $$.query('.dr_saveButton',node).click = h.save
   parent.add(uiele)
