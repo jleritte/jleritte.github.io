@@ -1,119 +1,123 @@
-DIV, BODY, HTML, SPAN, TD{
+.dr_contain * {
   margin:0;
   padding:0;
   border:0;
-  vertical-align:baseline;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
-  font-family: Tahoma, sans-serif;
+  font-family: sans-serif;
 }
-UL{
+.dr_contain UL{
   list-style-type:none;
   padding:0;
 }
-LI > UL{
+.dr_cantain LI > UL{
   padding-left: 25px;
 }
-.contain{
-  height: 467px;
-  max-width: 731px;
-  padding-top: 20px;
+/* Default styles */
+.dr_contain{
+  display: grid;
+  height: 100vh;
+  width: 100vw;
+  grid-template-columns: repeat(3,1fr);
+  grid-template-rows: auto repeat(3,1fr);
   overflow: hidden;
-  display: flex;
-  justify-content: space-between;
 }
-.tab {
-  height: 0%;
+.dr_contain [type='button'] {
+  border: 1px solid #000;
+  border-radius: 3px;
+  background: #78909c;
+  color: #fff;
+  cursor: pointer;
 }
-.tab > a{
-  background: #DDD;
-  margin-right: 2px;
-  line-height: 20px;
-  text-decoration: none;
-  padding: 10px 15px;
-  border-radius: 4px 4px 0px 0px;
-  color: #2c3e50;
-}
-.tab:target > a{
-  color: #000;
-  cursor: default;
-  background-color: #FFF;
-  border: 1px solid #999;
-  border-bottom-color: transparent;
-  position: relative;
-  z-index: 1;
-}
-.tab:target .content{
-  z-index: 0;
-}
-.roller, .list{
-  left: 0;
-  position: absolute;
-  background: #FFF;
-  width: 100%;
-  max-width: 731px;
-  min-height: 418px;
-  border-top: 1px solid #999;
-  border-bottom: 1px solid #999;
-  padding: 10px;
-  z-index: -2;
-  top: 50px;
-  display: flex;
-  flex-wrap: wrap;
-}
-.usage{
-  width: 100%;
-  height: 0%;
+.dr_usage{
   text-align: center;
-  margin: -15px 0;
-  pointer-events: none;
+  grid-area: 1 / 2 / 1 / 3;
+  margin: 5px 0 10px;
+  cursor: default;
+  user-select: none;
 }
-.usage P{
-  margin: 0;
+.dr_usage SPAN{
+  margin-left: 5px;
 }
-.roll{
-  width: 83%;
+.dr_content{
+  background: #FFF;
+  border-top: 1px solid #0005;
+  border-bottom: 1px solid #0005;
+  padding: 10px;
+  position: relative;
 }
-.save{
-  width: 15%;
+.dr_roller {
+  grid-area: 2/1/5/3;
+  display: grid;
+  grid-column-gap: 10px;
+  grid-template-columns: 5fr repeat(2,1fr);
+  grid-template-rows: 20px 20px 1fr;
 }
-.roll, .save {
-  height: 10%;
+.dr_list {
+  grid-area: 2/3/5/4;
+  border-left: 1px solid #0005;
 }
-.result{
+.dr_tab {
   width: 100%;
-  height:100%;
-  overflow-y:auto;
-  min-height: 300px;
 }
-.list LI{
+.dr_roll{
+  border-bottom: 1px solid;
+  grid-area: 2/1/3/2;
+}
+.dr_saveButton{
+  grid-area: 2/2/3/4;
+}
+.dr_result{
+  grid-area: 3/1/4/4;
+  overflow-y:auto;
+  display: flex;
+  flex-direction: column;
+  padding-top: 5px;
+}
+.dr_result [type="button"] {
+  margin-top: 7px;
+  width: 25%;
+}
+.dr_row SPAN {
+  margin-left: 5px;
+}
+.dr_disabled{
+  color:#f22;
+}
+.dr_max{
+  color:#2f2;
+}
+
+
+
+.dr_list LI{
   margin:2px 0;
   width:100%;
   height: 20px;
   display: flex;
   align-items: center;
+  user-select: none;
 }
-.list LI:hover{
+.dr_list LI:hover{
   background:#555;
   color:#fff;
   cursor:default;
 }
-.listCont{
-  width:100%;
-  height:396px;
-  background:#eee;
+.dr_listCont{
+  background: #b0bec5;
   overflow-y:auto;
   overflow-x:hidden;
   padding: 0 2px;
+  width: 100%;
+  height: calc(100% - 20px);
 }
-.saved{
+.dr_saved{
   margin: 0;
 }
-.list LI SPAN:last-child{
+.dr_list LI SPAN:first-child{
   width: 100%;
   padding-left: 5px;
 }
-SPAN.delete{
+.dr_delete{
   color:#eee;
   margin-right:4px;
   height: 16px;
@@ -122,36 +126,94 @@ SPAN.delete{
   font-size:14px;
   order: 2;
 }
-SPAN.delete:hover{
+.dr_delete:hover{
   background:#999;
   color:#555;
   cursor:default;
   border-radius:50%;
 }
-SPAN.disabled{
-  color:#f22;
-}
-SPAN.max{
-  color:#2f2;
-}
-DIV.helpBlur{
-  max-width: 731px;
-  min-height:467px;
+
+
+.dr_helpBlur{
   background:rgba(0,0,0,0.8);
-  top:0;
-  left:0;
-  position:fixed;
-  z-index:1000;
   display: flex;
   justify-content: center;
+  grid-area: 1/1/span 4/span 3;
+  z-index: 2;
 }
-DIV.helpContain{
+.dr_helpContain{
   background:#fff;
   align-self: center;
-  padding: 0 8px;
-  max-width: 90%;
+  padding: 8px;
   border-radius: 5px;
 }
-.helpContain LI{
+.dr_helpContain LI{
   margin-bottom: 2px;
+}
+
+/* widget Styles */
+.rollContain .dr_contain {
+  height: 100%;
+  width: 100%;
+}
+.rollContain .dr_usage{
+  grid-area: 1 / 2 / 1 / 4;
+  cursor: pointer;
+}
+.rollContain .dr_content {
+  grid-area: 2/1/span 3/span 3;
+}
+.rollContain .dr_content:focus {
+  outline: none;
+  z-index: 1;
+}
+.rollContain .dr_list:focus + .dr_roller .dr_tab,
+.rollContain .dr_list .dr_tab  {
+  box-shadow: 0 -10px 20px inset #0005;
+}
+.rollContain .dr_list:focus .dr_tab  {
+  box-shadow: none;
+}
+.rollContain .dr_roller {
+  grid-template-rows: 20px 1fr;
+}
+.rollContain .dr_list {
+  border-left: none;
+}
+.rollContain .dr_tab {
+  background: #ffff;
+  border-radius: 5px 5px 0 0;
+  position: absolute;
+  padding: 3px 7px;
+  top: -24px;
+  left: 0;
+  cursor: pointer;
+  width: auto;
+}
+.rollContain .dr_list .dr_tab {
+  left: 52px;
+}
+.rollContain .dr_roll{
+  grid-area: 1/1/2/2;
+}
+.rollContain .dr_saveButton{
+  grid-area: 1/3/2/4;
+}
+.rollContain .dr_result{
+  grid-area: 2/1/3/4;
+}
+.rollContain .dr_listCont{
+  height: 100%;
+}
+.rollContain .dr_helpContain{
+  overflow-y: scroll;
+  border-radius: 0;
+  align-self: initial;
+}
+.rollContain .dr_hide_widg,
+.dr_hide {
+  display: none;
+}
+.rollContain .dr_hide {
+  display: inline;
 }
