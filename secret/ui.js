@@ -85,7 +85,7 @@ class RecordList extends Div {
 
 class RecordHTML extends Div {
 	constructor(parent,data,onclick) {
-		console.log(`data`)
+		console.log(`${data}`)
 		let record = super(parent,{className: 'record standardSize',
 												textContent: data.name,
 												onclick
