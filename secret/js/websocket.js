@@ -6,7 +6,7 @@ let ws,emitter
 export default class Socket {
   constructor(events) {
     emitter = events
-    ws = ws || new WebSocket('ws://98.224.86.193:9000')
+    ws = ws || new WebSocket('wss://98.224.86.193:9000')
     ws.onopen = wsopen 
     ws.onmessage = wsmessage
     ws.onclose = wsclose
