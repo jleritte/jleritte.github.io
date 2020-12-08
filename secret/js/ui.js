@@ -55,8 +55,8 @@ async function copyText(e) {
 export class Login extends Div {
 	constructor(parent,{onclick,onkeydown}) {
 		const contain = super(parent,{className: 'logForm standardSize'})
-		new Input(contain,{onkeydown,className: 'uname',placeholder:'Username',value:'jonathan'})
-		new Password(contain,{onkeydown,className: 'password',placeholder: "Password",value:'test'})
+		new Input(contain,{onkeydown,className: 'uname',placeholder:'Username',value:''})
+		new Password(contain,{onkeydown,className: 'password',placeholder: "Password",value:''})
 		new Button(contain,{onclick,textContent: "Login"})
 
 		return contain
