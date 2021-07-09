@@ -74,6 +74,7 @@ MAIN > A:hover {
   position: absolute;
   right: 10px;
   top: 5px;
+  cursor: pointer;
 }
 @media only screen and (max-width: 769px) {
   MAIN {
