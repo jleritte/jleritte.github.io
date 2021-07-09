@@ -2,8 +2,18 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+*.light {
   --main-color: #ecf0f1;
   --text-color: #2c3e50;
+  --butt-color: #7f8c8d;
+  --hover-color: #95a5a6;
+}
+*.dark {
+  --main-color: #2c3e50;
+  --text-color: #ecf0f1;
+  --butt-color: #95a5a6;
+  --hover-color: #7f8c8d;
 }
 BODY {
   color: var(--text-color);
@@ -37,6 +47,7 @@ FOOTER {
 .title {
   text-align: center;
   grid-column: 1 / span 2;
+  position: relative;
 }
 .title H1 {
   margin-bottom: 2px;
@@ -46,7 +57,7 @@ FOOTER {
   padding: 0 2vw 2vh;
 }
 MAIN > A {
-  background: #7f8c8d;
+  background: var(--butt-color);
   border: 1px solid var(--text-color);
   border-radius: 10px;
   text-align: center;
@@ -55,9 +66,14 @@ MAIN > A {
   transition: all 100ms linear;
 }
 MAIN > A:hover {
-  background: #95a5a6;
+  background: var(--hover-color);
   margin: 0;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+.toggle {
+  position: absolute;
+  right: 10px;
+  top: 5px;
 }
 @media only screen and (max-width: 769px) {
   MAIN {
