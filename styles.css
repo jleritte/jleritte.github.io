@@ -21,8 +21,12 @@ MAIN {
   grid-auto-rows: 8vh;
   grid-gap: 5px;
   padding: 5px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: calc(100vh - 24px);
 }
 FOOTER {
+  background: var(--main-color);
   border-top: 1px solid #95a5a6;
   width: 100vw;
   text-align: right;
